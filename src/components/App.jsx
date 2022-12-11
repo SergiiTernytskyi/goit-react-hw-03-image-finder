@@ -1,10 +1,25 @@
+import { Component } from 'react';
 import { GlobalStyle } from './GlobalStyle';
+import { Searchbar } from './Searchbar/Searchbar';
 
-export const App = () => {
-  return (
-    <>
-      <div>React homework template</div>
-      <GlobalStyle />
-    </>
-  );
-};
+export class App extends Component {
+  state = {
+    search: '',
+  };
+
+  searchHandler = event => {
+    event.preventDefault();
+
+    const { search } = event.currentTarget;
+    this.setState({ search: search.value });
+  };
+
+  render() {
+    return (
+      <>
+        <Searchbar onSubmit={this.searchHandler} />
+        <GlobalStyle />
+      </>
+    );
+  }
+}

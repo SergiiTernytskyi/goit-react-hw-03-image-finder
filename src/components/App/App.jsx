@@ -24,7 +24,7 @@ const INITIAL_STATE = {
 };
 
 const scroll = Scroll.animateScroll;
-const scrollOptions = { duration: 1500, delay: 100, smooth: 'linear' };
+const scrollOptions = { duration: 1500, delay: 300, smooth: 'linear' };
 
 export class App extends Component {
   state = INITIAL_STATE;

@@ -47,8 +47,8 @@ export class App extends Component {
       } finally {
         this.setState({ loading: false });
       }
+      scroll.scrollToBottom(scrollOptions);
     }
-    scroll.scrollToBottom(scrollOptions);
   }
 
   searchHandler = async event => {

@@ -11,6 +11,7 @@ export const Search = styled.header`
   min-height: 80px;
   padding-right: ${p => p.theme.space[5]}px;
   padding-left: ${p => p.theme.space[5]}px;
+  margin-bottom: ${p => p.theme.space[4]}px;
 
   color: ${p => p.theme.colors.primary};
   background-color: ${p => p.theme.colors.background};

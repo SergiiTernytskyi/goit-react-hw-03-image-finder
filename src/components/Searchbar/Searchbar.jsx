@@ -4,11 +4,6 @@ import { FcSearch } from 'react-icons/fc';
 import { Input, SeachButton, Search, SearchForm } from './Searchbar.styled';
 
 export const Searchbar = ({ onSubmit }) => {
-  //   const onSubmit = event => {
-  //     event.preventDefault();
-  //     console.log(event);
-  //   };
-
   return (
     <Search>
       <SearchForm onSubmit={onSubmit}>

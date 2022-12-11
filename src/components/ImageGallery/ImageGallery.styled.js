@@ -9,4 +9,5 @@ export const Gallery = styled.ul`
   list-style: none;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: ${p => p.theme.space[5]}px;
 `;

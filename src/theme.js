@@ -3,7 +3,6 @@ export const theme = {
     background: '#728697 ',
     primary: '#e2ebf3',
     secondary: '#b1c8dd ',
-    // primaryText: '#515e69',
     white: '#ffffff',
     black: '#000000',
     accent: '#ea4f16',
@@ -40,7 +39,7 @@ export const theme = {
     first:
       '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)',
     second:
-      'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset',
+      '0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);',
     third: 'rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px',
   },
 };

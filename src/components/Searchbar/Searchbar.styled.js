@@ -8,10 +8,9 @@ export const Search = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80px;
+  min-height: 120px;
   padding-right: ${p => p.theme.space[5]}px;
   padding-left: ${p => p.theme.space[5]}px;
-  margin-bottom: ${p => p.theme.space[4]}px;
 
   color: ${p => p.theme.colors.primary};
   background-color: ${p => p.theme.colors.background};
@@ -32,7 +31,7 @@ export const SeachButton = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 60px;
+  width: 72px;
   height: 48px;
 
   background-color: ${p => p.theme.colors.secondary};

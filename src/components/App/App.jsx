@@ -17,6 +17,7 @@ const INITIAL_STATE = {
   page: 1,
   totalImages: null,
   loading: false,
+  showLoadMore: false,
   error: null,
 };
 
@@ -35,7 +36,8 @@ export class App extends Component {
         const data = await getImages(search, page);
         this.setState(prevState => ({
           images: [...prevState.images, ...data.hits],
-          totalImages: data.total,
+          totalImages: data.totalHits,
+          showLoadMore: page < Math.ceil(data.totalHits / 12) ? true : false,
         }));
       } catch {
         this.setState({
@@ -63,6 +65,7 @@ export class App extends Component {
       page: 1,
       totalImages: null,
       images: [],
+      showLoadMore: false,
     });
   };
 
@@ -71,7 +74,7 @@ export class App extends Component {
   };
 
   render() {
-    const { images, totalImages, loading, error } = this.state;
+    const { images, totalImages, loading, showLoadMore, error } = this.state;
 
     return (
       <>
@@ -79,11 +82,10 @@ export class App extends Component {
         <Main>
           {loading && <Loader />}
           {error && <Error>{error}</Error>}
-          {images.length > 0 && <ImageGallery images={images} />}
-          {totalImages > 12 && <Button onClick={this.loadMoreHandler} />}
           {totalImages === 0 && <Error>Nothing found, nothing to show</Error>}
+          {images.length > 0 && <ImageGallery images={images} />}
+          {showLoadMore && <Button onClick={this.loadMoreHandler} />}
         </Main>
-
         <Toaster position="top-right" reverseOrder={false} />
         <GlobalStyle />
       </>

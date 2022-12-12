@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import { ImageGalleyItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { Gallery } from './ImageGallery.styled';
 
-export const ImageGallery = ({ images, openModal }) => {
+export const ImageGallery = ({ images }) => {
   return (
     <Gallery>
       {images.map(image => {
-        return (
-          <ImageGalleyItem key={image.id} image={image} openModal={openModal} />
-        );
+        return <ImageGalleyItem key={image.id} image={image} />;
       })}
     </Gallery>
   );
@@ -24,5 +22,4 @@ ImageGallery.propTypes = {
       largeImageURL: PropTypes.string.isRequired,
     })
   ).isRequired,
-  openModal: PropTypes.func.isRequired,
 };

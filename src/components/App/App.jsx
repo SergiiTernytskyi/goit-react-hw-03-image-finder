@@ -3,7 +3,6 @@ import * as Scroll from 'react-scroll';
 import { Button } from 'components/Button/Button';
 import { Error } from 'components/Error/Error';
 import { Loader } from 'components/Loader/Loader';
-import { Modal } from 'components/Modal/Modal';
 import { Component } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { getImages } from 'utils/imageApi';
@@ -17,10 +16,8 @@ const INITIAL_STATE = {
   images: [],
   page: 1,
   totalImages: null,
-  activeImage: {},
-  error: null,
-  showModal: false,
   loading: false,
+  error: null,
 };
 
 const scroll = Scroll.animateScroll;
@@ -47,8 +44,8 @@ export class App extends Component {
       } finally {
         this.setState({ loading: false });
       }
-      scroll.scrollToBottom(scrollOptions);
     }
+    scroll.scrollToBottom(scrollOptions);
   }
 
   searchHandler = async event => {
@@ -73,20 +70,8 @@ export class App extends Component {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
-  openModal = value => {
-    this.setState({
-      activeImage: value,
-      showModal: true,
-    });
-  };
-
-  closeModal = () => {
-    this.setState({ activeImage: null, showModal: false });
-  };
-
   render() {
-    const { images, totalImages, activeImage, showModal, loading, error } =
-      this.state;
+    const { images, totalImages, loading, error } = this.state;
 
     return (
       <>
@@ -94,21 +79,12 @@ export class App extends Component {
         <Main>
           {loading && <Loader />}
           {error && <Error>{error}</Error>}
-          {images.length > 0 && (
-            <ImageGallery
-              images={images}
-              showModal={showModal}
-              openModal={this.openModal}
-            />
-          )}
+          {images.length > 0 && <ImageGallery images={images} />}
           {totalImages > 12 && <Button onClick={this.loadMoreHandler} />}
           {totalImages === 0 && <Error>Nothing found, nothing to show</Error>}
         </Main>
 
         <Toaster position="top-right" reverseOrder={false} />
-        {showModal && (
-          <Modal activeImage={activeImage} onClose={this.closeModal} />
-        )}
         <GlobalStyle />
       </>
     );

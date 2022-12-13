@@ -1,5 +1,3 @@
-import * as Scroll from 'react-scroll';
-
 import { Button } from 'components/Button/Button';
 import { Error } from 'components/Error/Error';
 import { Loader } from 'components/Loader/Loader';
@@ -21,9 +19,6 @@ const INITIAL_STATE = {
   error: null,
 };
 
-const scroll = Scroll.animateScroll;
-const scrollOptions = { duration: 1500, delay: 300, smooth: 'linear' };
-
 export class App extends Component {
   state = INITIAL_STATE;
 
@@ -33,9 +28,16 @@ export class App extends Component {
     if (prevState.search !== search || prevState.page !== page) {
       try {
         this.setState({ loading: true });
+
         const data = await getImages(search, page);
+        const images = data.hits.map(
+          ({ id, tags, largeImageURL, webformatURL }) => {
+            return { id, tags, largeImageURL, webformatURL };
+          }
+        );
+
         this.setState(prevState => ({
-          images: [...prevState.images, ...data.hits],
+          images: [...prevState.images, ...images],
           totalImages: data.totalHits,
           showLoadMore: page < Math.ceil(data.totalHits / 12) ? true : false,
         }));
@@ -47,7 +49,6 @@ export class App extends Component {
         this.setState({ loading: false });
       }
     }
-    scroll.scrollToBottom(scrollOptions);
   }
 
   searchHandler = async event => {

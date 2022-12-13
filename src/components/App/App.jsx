@@ -30,17 +30,16 @@ export class App extends Component {
         this.setState({ loading: true });
 
         const data = await getImages(search, page);
-        const images = data.hits.map(
-          ({ id, tags, largeImageURL, webformatURL }) => {
-            return { id, tags, largeImageURL, webformatURL };
-          }
-        );
-
-        this.setState(prevState => ({
-          images: [...prevState.images, ...images],
-          totalImages: data.totalHits,
-          showLoadMore: page < Math.ceil(data.totalHits / 12) ? true : false,
-        }));
+        data.hits.map(({ id, tags, largeImageURL, webformatURL }) => {
+          return this.setState(prevState => ({
+            images: [
+              ...prevState.images,
+              { id, tags, largeImageURL, webformatURL },
+            ],
+            totalImages: data.totalHits,
+            showLoadMore: page < Math.ceil(data.totalHits / 12) ? true : false,
+          }));
+        });
       } catch {
         this.setState({
           error: `Something went wrong. Try one more time.`,
